@@ -6,7 +6,6 @@
       <% tracking_number_array = TrackingNumber.search(message['body']['content'])%>
       <% if tracking_number_array.size >= 1%>
       <% tracking_number_array.each do |tracking_number|%>
-            <progress class="uk-progress" value="" max=""></progress>
         <%url = URI.parse("https://api.shipengine.com/v1/tracking?carrier_code="+tracking_number.courier_code.to_s+"&tracking_number="+tracking_number.tracking_number)
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
@@ -18,12 +17,10 @@
       
           response = http.request(request) %>
           <% hashed_response = JSON.parse(response.body)%>
-          
+
             <% if hashed_response["status_code"] == "UN" || hashed_response["status_code"] == "EX" || hashed_response["status_code"] == "NY"%>
-              <div class="error-message">
-                <%= hashed_response["tracking_number"]%> 
-                <%= hashed_response["status_code"]%> 
-              </div>
+            <%= react_component('ProgressBox', tracking_info: hashed_response) %>
+
             <% else%>
               <%= hashed_response["tracking_number"]%> 
               <%= hashed_response["status_code"]%> 

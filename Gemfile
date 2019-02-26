@@ -72,3 +72,5 @@ gem 'tracking_number', '~> 1.0', '>= 1.0.5'
 gem 'rails-uikit', git: 'git://github.com/nicbet/rails-uikit.git'
 
 gem 'microsoft_graph', '~> 0.1.3'
+
+gem 'react-rails'
