@@ -1,0 +1,37 @@
+
+<center>
+<div class="uk-card">
+
+    <% @messages.each do |message|%>
+      <% tracking_number_array = TrackingNumber.search(message['body']['content'])%>
+      <% if tracking_number_array.size >= 1%>
+      <% tracking_number_array.each do |tracking_number|%>
+            <progress class="uk-progress" value="" max=""></progress>
+        <%url = URI.parse("https://api.shipengine.com/v1/tracking?carrier_code="+tracking_number.courier_code.to_s+"&tracking_number="+tracking_number.tracking_number)
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      
+          request = Net::HTTP::Get.new(url.request_uri)
+          request["accept"] = 'application/json'
+          request["api-key"] = ENV["SHIPENGINE_API_KEY"]
+      
+          response = http.request(request) %>
+          <% hashed_response = JSON.parse(response.body)%>
+          
+            <% if hashed_response["status_code"] == "UN" || hashed_response["status_code"] == "EX" || hashed_response["status_code"] == "NY"%>
+              <div class="error-message">
+                <%= hashed_response["tracking_number"]%> 
+                <%= hashed_response["status_code"]%> 
+              </div>
+            <% else%>
+              <%= hashed_response["tracking_number"]%> 
+              <%= hashed_response["status_code"]%> 
+            <%end%>
+
+
+          <%end%>
+        <%end%>
+      <%end%>
+</div>
+</center>
