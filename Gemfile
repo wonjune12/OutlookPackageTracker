@@ -74,3 +74,6 @@ gem 'rails-uikit', git: 'git://github.com/nicbet/rails-uikit.git'
 gem 'microsoft_graph', '~> 0.1.3'
 
 gem 'react-rails'
+
+gem 'classnames-rails'
+gem "font-awesome-rails"

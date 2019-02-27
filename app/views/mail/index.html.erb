@@ -1,6 +1,5 @@
 
 <center>
-<div class="uk-card">
 
     <% @messages.each do |message|%>
       <% tracking_number_array = TrackingNumber.search(message['body']['content'])%>
@@ -17,18 +16,13 @@
       
           response = http.request(request) %>
           <% hashed_response = JSON.parse(response.body)%>
-
-            <% if hashed_response["status_code"] == "UN" || hashed_response["status_code"] == "EX" || hashed_response["status_code"] == "NY"%>
-            <%= react_component('ProgressBox', tracking_info: hashed_response) %>
-
-            <% else%>
-              <%= hashed_response["tracking_number"]%> 
-              <%= hashed_response["status_code"]%> 
+            <% if hashed_response["status_code"]%>
+            <div class="uk-card">
+              <%= react_component('ProgressBox', tracking_info: hashed_response) %>
+            </div>
             <%end%>
-
-
           <%end%>
         <%end%>
       <%end%>
-</div>
+
 </center>
