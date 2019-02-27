@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require uikit
+ *= require font-awesome
+
  */
 
 
@@ -27,8 +29,32 @@ $greencolor : #81BC0A;
 
  .uk-card{
    width: 60%;
+   margin-top : 50px;
  }
 
- .error-message{
+.message-error{
+  color : $yellowcolor;
+}
+
+ .message-warning{
    color : $redcolor;
  }
+
+ .message-success{
+   color : $greencolor;
+ }
+
+ .message-process{
+   color : $bluecolor;
+ }
+
+#bottom-margin{
+  margin-bottom : 100px;
+}
+#small-bottom-margin{
+  margin-bottom : 20px;
+}
+
+.uk-table{
+  width: 25%;
+}

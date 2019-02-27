@@ -1,5 +1,8 @@
 {
   "name": "graph-tutorial",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "uikit-react": "^3.0.18"
+  }
 }

@@ -68,7 +68,14 @@ gem 'nokogiri', '~> 1.8'
 gem 'activerecord-session_store', '~> 1.1'
 
 gem 'tracking_number', '~> 1.0', '>= 1.0.5'
+gem "activestorage", ">= 5.2.1.1"
+gem "activejob", ">= 5.2.1.1"
 
 gem 'rails-uikit', git: 'git://github.com/nicbet/rails-uikit.git'
 
 gem 'microsoft_graph', '~> 0.1.3'
+
+gem 'react-rails'
+
+gem 'classnames-rails'
+gem "font-awesome-rails"
