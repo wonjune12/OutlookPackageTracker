@@ -42,26 +42,23 @@ class ProgressBox extends React.Component{
 
     return(
 
-      <div class="uk-container">
-        <progress id="js-progressbar" class="uk-progress uk-progress-success" value={progress_value} max="100"></progress><br/>
-        <div className={tracking_status}> 
-          <div class="uk-block">
-    <button class="uk-button uk-position-center-right" type="button" onClick={this.show_detail.bind(this)}>
-    {!this.state.condition ? <i class="fas fa-arrow-down"></i> : <i class="fas fa-arrow-up"></i> }</button>
+      <div className="uk-container">
+        <progress id="js-progressbar" className="uk-progress uk-progress-success" value={progress_value} max="100"></progress><br/>
+        <div className={tracking_status += " uk-position-left"} id="small-bottom-margin"> 
+            Tracking Number : {this.props.tracking_info.tracking_number}<br/>
+            Status Code : {this.props.tracking_info.status_code}<br/><br/>
+          <button className="uk-button uk-position-center-right" type="button" onClick={this.show_detail.bind(this)}>
+          {!this.state.condition ? <i className="fas fa-arrow-down"></i> : <i className="fas fa-arrow-up"></i> }</button>
 
-                <div class="">{this.props.tracking_info.tracking_number} <br/></div>
-              {this.props.tracking_info.status_code}
 
             { this.state.condition ?(
             <div>
-            {this.props.tracking_info.status_code}
+              {this.props.tracking_info.carrier_status_description}
             </div>
             )
             :(null) 
             }
             </div>
-            
-        </div>
       <br/>
       </div>
     )

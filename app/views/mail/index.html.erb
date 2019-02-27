@@ -1,6 +1,6 @@
 
 <center>
-
+    <h3>Packages</h3>
     <% @messages.each do |message|%>
       <% tracking_number_array = TrackingNumber.search(message['body']['content'])%>
       <% if tracking_number_array.size >= 1%>
@@ -17,8 +17,9 @@
           response = http.request(request) %>
           <% hashed_response = JSON.parse(response.body)%>
             <% if hashed_response["status_code"]%>
-            <div class="uk-card">
-              <%= react_component('ProgressBox', tracking_info: hashed_response) %>
+            
+            <div class="uk-card" id="bottom-margin">
+              <%=tracking_number.courier_name%> <%= react_component('ProgressBox', tracking_info: hashed_response) %><br/>
             </div>
             <%end%>
           <%end%>
@@ -26,3 +27,31 @@
       <%end%>
 
 </center>
+<footer>
+
+  <table class="uk-table uk-table-divider">
+  <Caption> Delivery Status Code Explained</Caption>
+  <tr>
+    <td> NY </td>
+    <td> Not Yet Received by Carrier </td>
+  </tr>
+  <tr>
+    <td> Un</td>
+    <td> Unknown </td>
+  </tr>
+  <tr>
+    <td> DE </td>
+    <td> Delivered </td>
+  </tr>
+  <tr>
+    <td> IT </td>
+    <td> In Transit </td>
+  </tr>
+  <tr>
+    <td> AC </td>
+    <td> Accepted by the Carrier</td>
+  </tr>
+  </table>
+
+  If your status is showing in either red or yellow, please contact the carrier directly.
+</footer>

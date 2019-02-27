@@ -1,7 +1,12 @@
 <div class="jumbotron uk-position-center">
   <% if @user_name %>
-    <h4>Welcome <%= @user_name %>!</h4>
+    <h3>Welcome <%= @user_name %>!</h3>
+    <h4> Click on the <%= link_to "Packages", {:controller => :mail, :action => :index}, class: "nav-link#{' active' if controller.controller_name == 'mail'}" %>
+ to see your package status from your e-mail. </h4>
   <% else %>
+    <h2> Hi! Welcome to Allpacktrack ! </h2>
+    <h3> This application searches for package tracking numbers of 20+ worldwide carriers from your Outlook e-mail</h3>
+    <h3> To get started sign in with the link below </h3>
     <h4><%= link_to "Click here to sign in with Outlook.com", {:controller => :auth, :action => :signin}, :class => "btn btn-primary btn-large" %></h4>
   <% end %>
 </div>
