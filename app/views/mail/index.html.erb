@@ -22,8 +22,32 @@
             <% if hashed_response["status_code"]%>
             
             <div class="uk-card" id="bottom-margin">
-              <%=tracking_number.courier_name%> <%= react_component('ProgressBox', tracking_info: hashed_response) %><br/>
+              <%=tracking_number.courier_name%> 
+
+              <%
+              if(hashed_response["status_code"] == 'NY')
+              tracking_status = "message-error"
+              elsif(hashed_response["status_code"] == 'UN')
+              tracking_status = "message-warning"
+              elsif(hashed_response["status_code"] == 'DE')
+              tracking_status = "message-success"
+              elsif(hashed_response["status_code"] == 'IT')
+              tracking_status = "message-process"
+              elsif(hashed_response["status_code"] == 'AC')
+              tracking_status = "message-process"
+              end
+              %>
+              </center>
+              <div class="uk-container">
+               <progress id="js-progressbar" class="uk-progress uk-progress" value="10" max="100"></progress><br/>
+                <div class="<%=tracking_status%>"x id="small-bottom-margin">
+                Trackiing Number : <%=hashed_response["tracking_number"] %><br/>
+                Status Code : <%=hashed_response["status_code"]%>
+                Status Description : <%=hashed_response["carrier_status_description"]%>
+                </div>
+              </div>
             </div>
+            <center>
             <%end%>
           <%end%>
         <%end%>
